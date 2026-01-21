@@ -1,10 +1,10 @@
-package dev.hytalemodding;
+package com.the7legions.hytale;
 
 import com.hypixel.hytale.server.core.event.events.player.PlayerReadyEvent;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
-import dev.hytalemodding.commands.ExampleCommand;
-import dev.hytalemodding.events.ExampleEvent;
+import com.the7legions.hytale.commands.ExampleCommand;
+import com.the7legions.hytale.events.ExampleEvent;
 
 import javax.annotation.Nonnull;
 
