@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="HytaleServer" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.hypixel.hytale.Main" />
+    <module name="WorkbenchRepair" />
+    <option name="PROGRAM_PARAMETERS" value="--allow-op --disable-sentry --assets=&quot;$PROJECT_DIR$/libs/hytale/win-server/Assets.zip&quot; --mods=&quot;$PROJECT_DIR$/run/mods/&quot;,&quot;$PROJECT_DIR$/target/&quot;" />
+    <option name="VM_PARAMETERS" value="-cp &quot;$PROJECT_DIR$/libs/hytale/win-server/Server/HytaleServer.jar&quot; -XX:AOTCache=&quot;$PROJECT_DIR$/libs/hytale/win-server/Server/HytaleServer.aot&quot; -Xlog:aot" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/run/" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_update-windows.ps1" />
+    </method>
+  </configuration>
+</component>

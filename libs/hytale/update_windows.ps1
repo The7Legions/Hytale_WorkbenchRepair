@@ -76,21 +76,19 @@ try {
     Expand-Archive -Path $zipPath -DestinationPath $extractDir -Force
 
     Write-Host "Updating..."
-    Get-ChildItem -Path $extractDir -Force -Recurse | ForEach-Object {
-        Write-Host "Checking: $_.Name"
-        $dest = Join-Path $serverRoot $_.Name
-        if ($_.Name -eq "Assets.zip") {
-            Copy-Item -Path $_.FullName -Destination $dest -Force
-        }
-        elseif ($_.Name -eq "HytaleServer.jar") {
-            Copy-Item -Path $_.FullName -Destination $dest -Force
-        }
-    }
 
-    $assetsZip = Join-Path $extractDir "Assets.zip"
-    if (Test-Path $assetsZip) {
-        Copy-Item -Path $assetsZip -Destination (Join-Path $serverRoot "Assets.zip") -Force
-    }
+    robocopy $extractDir $serverRoot /s
+    # Get-ChildItem -Path $extractDir -Recurse | ForEach-Object {        
+    #     $dest = $serverRoot + $_.FullName.SubString($extractDir.Length)
+    #     $dest = Join-Path $dest ..
+
+    #     if (!($dest.Contains('.')) -and !(Test-Path $dest)) {
+
+    #         mkdir $dest
+    #     }
+
+    #     Copy-Item $_.FullName -Destination $dest -Force
+    # }
 
     if ($newVersion) {
         Set-Content -Path $versionFile -Value $newVersion -NoNewline

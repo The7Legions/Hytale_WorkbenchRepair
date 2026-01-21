@@ -1,20 +1,21 @@
 {
-  "Group": "dev.hytalemodding",
-  "Name": "ExamplePlugin",
+  "Group": "com.the7legions",
+  "Name": "WorkbenchRepair",
   "Version": "${version}",
-  "Description": "Description of your plugin",
+  "Description": "Makes the Workbench repair your gear when you interact with it! Like it should!",
   "Authors": [
     {
-      "Name": "Your Name",
-      "Email": "your.email@example.com",
-      "Url": "https://your-website.com"
+      "Name": "Trenyc",
+      "Email": "trenyc@fiveforone.net",
+      "Url": "https://discord.gg/the7legions"
     }
   ],
-  "Website": "https://your-plugin-website.com",
+  "Website": "https://github.com/The7Legions/Hytale_WorkbenchRepair",
   "ServerVersion": "*",
   "Dependencies": {},
-  "OptionalDependencies": {},
+  "OptionalDependencies": {
+  },
   "DisabledByDefault": false,
   "IncludesAssetPack": false,
-  "Main": "dev.hytalemodding.ExamplePlugin"
+  "Main": "com.the7legions.hytale.WorkbenchRepair"
 }

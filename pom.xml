@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Comes with a preconfigured Run configuration for IntelliJ IDEA in the .run folder.
+    Before beginning development, run the HytaleServer run configuration at least once.
+    This will automatically download the Hytale Server dependencies.
+
+    Then, add the HytaleServer.jar dependency to Maven and to project Libraries by following
+    the directions at:
+
+    https://hytalemodding.dev/en/docs/guides/plugin/setting-up-env
+-->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>dev.hytalemodding</groupId>
-    <artifactId>ExamplePlugin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>com.the7legions</groupId>
+    <artifactId>WorkbenchRepair</artifactId>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>
