@@ -20,7 +20,7 @@ mkdir -p "$SERVER_OUTPUT_ROOT"
 if [[ ! -x "$DOWNLOADER" ]]; then
     echo "Updater not found, fetching latest..."
     curl -fsSL https://downloader.hytale.com/hytale-downloader.zip -o "$DOWNLOADER_TMP/dl.zip"
-    ../7zip/7zz e "$DOWNLOADER_TMP/dl.zip" -o"$DOWNLOADER_TMP"
+    ./7zip/7zz e "$DOWNLOADER_TMP/dl.zip" -o"$DOWNLOADER_TMP"
     cp "$(find "$DOWNLOADER_TMP" -name 'hytale-downloader-*-amd64' -type f | head -n1)" "$DOWNLOADER"
     chmod +x "$DOWNLOADER"
 fi
