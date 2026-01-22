@@ -6,11 +6,11 @@ import com.hypixel.hytale.component.Ref;
 import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.EntityEventSystem;
+import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.asset.type.blocktype.config.BlockType;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.event.events.ecs.UseBlockEvent;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
-import com.hypixel.hytale.server.core.universe.Universe;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -21,8 +21,10 @@ public class PlayerUseBlockEventSystem extends EntityEventSystem<EntityStore, Us
         super(eventType);
     }
 
+    private HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
     public Player player;
     public BlockType blockType;
+
 
     @Override
     public void handle(int index,
@@ -38,7 +40,7 @@ public class PlayerUseBlockEventSystem extends EntityEventSystem<EntityStore, Us
 
     private void doRepair(Ref<EntityStore> ref, Player player, Store<EntityStore> store) {
         var inventory = player.getInventory().getCombinedEverything();
-        if (!blockType.equals(BlockType.fromString("Bench_WorkBench"))) {
+        if (!blockType.getItem().getId().equals("Bench_WorkBench")) {
             return;
         }
         for (short i=0; i<inventory.getCapacity(); i++) {
