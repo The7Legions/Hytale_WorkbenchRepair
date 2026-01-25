@@ -16,7 +16,7 @@
 
     <groupId>com.the7legions</groupId>
     <artifactId>WorkbenchRepair</artifactId>
-    <version>1.0.1</version>
+    <version>1.1.0</version>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>
