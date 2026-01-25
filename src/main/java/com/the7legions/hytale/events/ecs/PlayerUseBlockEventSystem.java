@@ -7,24 +7,29 @@ import com.hypixel.hytale.component.Store;
 import com.hypixel.hytale.component.query.Query;
 import com.hypixel.hytale.component.system.EntityEventSystem;
 import com.hypixel.hytale.logger.HytaleLogger;
+import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.asset.type.blocktype.config.BlockType;
 import com.hypixel.hytale.server.core.entity.entities.Player;
 import com.hypixel.hytale.server.core.event.events.ecs.UseBlockEvent;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
+import com.the7legions.hytale.WorkbenchRepair;
+import com.the7legions.hytale.WorkbenchRepairConfig;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
+
+import java.util.Arrays;
 
 public class PlayerUseBlockEventSystem extends EntityEventSystem<EntityStore, UseBlockEvent.Pre> {
 
-    public PlayerUseBlockEventSystem(@NonNullDecl
-                           Class<UseBlockEvent.Pre> eventType) {
+    public PlayerUseBlockEventSystem(@NonNullDecl Class<UseBlockEvent.Pre> eventType, WorkbenchRepair plugin) {
         super(eventType);
+        this.plugin = plugin;
     }
 
+    private final WorkbenchRepair plugin;
     private HytaleLogger LOGGER = HytaleLogger.forEnclosingClass();
     public Player player;
     public BlockType blockType;
-
 
     @Override
     public void handle(int index,
@@ -40,12 +45,16 @@ public class PlayerUseBlockEventSystem extends EntityEventSystem<EntityStore, Us
 
     private void doRepair(Ref<EntityStore> ref, Player player, Store<EntityStore> store) {
         var inventory = player.getInventory().getCombinedEverything();
-        if (!blockType.getItem().getId().equals("Bench_WorkBench")) {
+        WorkbenchRepairConfig config = plugin.getConfig().get();
+        if (!blockType.getItem().getId().equals("Bench_WorkBench") || (blockType.equals(BlockType.fromString("Bench_WorkBench")) && !config.getAllowT1Workbench())) {
             return;
         }
         for (short i=0; i<inventory.getCapacity(); i++) {
             var itemStack = inventory.getItemStack(i);
             if (itemStack != null && itemStack.getMaxDurability() > 0 && itemStack.getDurability() < itemStack.getMaxDurability()) {
+                if (Arrays.asList(config.getBlacklist()).contains(itemStack.getItem().getId())) {
+                    return;
+                }
                 player.updateItemStackDurability(
                         ref,
                         itemStack,
